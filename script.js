@@ -20,15 +20,13 @@ function createNewTimer(name, hour, minute, second) {
   currentHour.id = `newHour-${index}`
   currentHour.textContent = hour.toString()
 
-  const separator1 = document.createElement('p')
-  separator1.textContent = ':'
+  const separator = document.createElement('p')
+  separator.textContent = ':'
   
   const currentMinute = document.createElement('p')
   currentMinute.id = `newMinute-${index}`
   currentMinute.textContent = minute.toString()
   
-  const separator2 = document.createElement('p')
-  separator2.textContent = ':'
   
   const currentSecond = document.createElement('p')
   currentSecond.id = `newSecond-${index}`
@@ -36,9 +34,9 @@ function createNewTimer(name, hour, minute, second) {
 
   wrapper.appendChild(timerName)
   wrapper.appendChild(currentHour)
-  wrapper.appendChild(separator1)
+  wrapper.appendChild(separator)
   wrapper.appendChild(currentMinute)
-  wrapper.appendChild(separator2)
+  wrapper.appendChild(separator)
   wrapper.appendChild(currentSecond)
 
   list.appendChild(wrapper)
@@ -54,10 +52,6 @@ function createNewTimer(name, hour, minute, second) {
     currentMinute,
     currentSecond
   }
-}
-
-function getValue(element) {
-  return Number(element.value)
 }
 
 function updateTimer(timer) {
@@ -89,9 +83,9 @@ function updateTimer(timer) {
 
 function setNewTimer() {
   const name = inputName.value
-  const hour = getValue(inputHour).toString().padStart(2, '0')
-  const minute = getValue(inputMinute).toString().padStart(2, '0')
-  const second = getValue(inputSecond).toString().padStart(2, '0')
+  const hour = inputHour.value.padStart(2, '0')
+  const minute = inputMinute.value.padStart(2, '0')
+  const second = inputSecond.value.padStart(2, '0')
 
   const timer = createNewTimer(name, hour, minute, second)
   timer.intervalID = setInterval(() => updateTimer(timer), 1000)
